@@ -6,7 +6,7 @@
     <description>Screenshot PhoneGap Plugin for iOS/OS X/Android</description>
     <license>MIT</license>
     <keywords>cordova,screenshot</keywords>
-    <repo>https://github.com/jammind/codeplay/cordova-screenshot.git</repo>
+    <repo>https://github.com/jammind/cordova-screenshot.git</repo>
     <engines>
         <engine name="cordova" version=">=3.0.0" />
     </engines>
