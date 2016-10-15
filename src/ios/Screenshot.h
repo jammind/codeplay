@@ -14,6 +14,7 @@
 @interface Screenshot : CDVPlugin {
 }
 
+@property (nonatomic, strong) NSString *imageFormat;
 //- (void)saveScreenshot:(NSArray*)arguments withDict:(NSDictionary*)options;
 - (void)saveScreenshot:(CDVInvokedUrlCommand*)command;
 - (void)getScreenshotAsURI:(CDVInvokedUrlCommand*)command;
