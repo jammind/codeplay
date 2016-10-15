@@ -1,4 +1,4 @@
-cordova.define("com.codeplay.cordova.screenshot", function(require, exports, module) {
+cordova.define("com.codeplay.cordova.screenshot.screenshot", function(require, exports, module) {
 /*
  *  This code is adapted from the work of Michael Nachbaur
  *  by Simon Madine of The Angry Robot Zombie Factory
