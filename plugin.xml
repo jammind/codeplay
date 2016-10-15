@@ -48,6 +48,6 @@
         </config-file>
         <header-file src="src/osx/Screenshot.h" />
         <source-file src="src/osx/Screenshot.m" />
--->
     </platform>
+-->
 </plugin>
