@@ -14,6 +14,7 @@
         <merges target="navigator.screenshot" />
     </js-module>
     <!-- android -->
+<!--
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Screenshot">
@@ -26,6 +27,7 @@
         <source-file src="src/android/Screenshot.java" target-dir="src/com/codeplay/cordova/screenshot" />
         <source-file src="src/android/PermissionHelper.java" target-dir="src/com/codeplay/cordova/screenshot" />
     </platform>
+-->
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
@@ -37,6 +39,7 @@
         <source-file src="src/ios/Screenshot.m" />
     </platform>
     <!-- osx -->
+<!--
     <platform name="osx">
         <config-file target="config.xml" parent="/*">
             <feature name="Screenshot">
@@ -45,5 +48,6 @@
         </config-file>
         <header-file src="src/osx/Screenshot.h" />
         <source-file src="src/osx/Screenshot.m" />
+-->
     </platform>
 </plugin>
