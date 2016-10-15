@@ -1,0 +1,37 @@
+{
+  "name": "com.coldplay.cordova.screenshot",
+  "version": "0.1.5",
+  "description": "Screenshot PhoneGap Plugin for iOS/OS X/Android",
+  "cordova": {
+    "id": "com.coldplay.cordova.screenshot",
+    "platforms": [
+      "android",
+      "ios",
+      "osx"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jammind/codeplay/cordova-screenshot.git"
+  },
+  "keywords": [
+    "cordova",
+    "screenshot",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-osx"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Jam Zhang & Zhu Hui based on Hongbo LU's original plugin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jammind/codeplay/cordova-screenshot.git/issues"
+  },
+  "homepage": "https://github.com/jammind/codeplay/cordova-screenshot.git#readme"
+}
