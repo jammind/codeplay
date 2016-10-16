@@ -47,6 +47,8 @@ var options = {
 	mode: ‘crop’ // ‘fit’ ‘cover’ ‘crop’ How to resize/crop the screenshot
 }
 ```
+![Resize / Crop Modes](https://github.com/jammind/cordova-screenshot/blob/master/resize-crop-modes.png)
+
 ##Sample: Take screenshot in JPEG (85) and crop to 200x200px and save to the presistent (document) folder.
 ```js
 function callback(error,result){
