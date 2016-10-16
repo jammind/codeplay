@@ -2,7 +2,7 @@ cordova-screenshot
 com.codeplay.cordova.screenshot
 ==================
 
-The Screenshot plugin allows your cordova application to take screenshots in JPG or PNG, resize or crop them and save them into any folders. Perfect for creating thumbnails.
+The Screenshot plugin allows your cordova application to take screenshots in JPG or PNG, resize or crop them and save them into any folders. Perfect for creating thumbnails with optimized file size.
 
 ##How to Install
 Install it via cordova CLI (Command-Line Installer).
