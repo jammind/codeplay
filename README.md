@@ -3,26 +3,23 @@ cordova-screenshot
 
 The Screenshot plugin allows your cordova application to take screenshots in JPG or PNG, resize or crop them and save them into any folders. Perfect for creating thumbnails.
 
-##how to install
+##How to Install
 
-install it via cordova cli
+Install it via cordova cli
 
 ```
 cordova plugin add https://github.com/jammind/cordova-screenshot.git
 ```
 
-notice:
+Notice:
 It supports only iOS now. I plan to support Android in the future.
 It is based on https://github.com/gitawego/cordova-screenshot. The original plugin supports iOS / OS X / Android.
 ##Usage
-
-
 ```js
 navigator.screenshot.save(callback, options);
 ```
 
 ##Parameters
-
 ```js
 // callback is invoked when screenshot is taken
 function callback(error,result){
@@ -47,6 +44,8 @@ var options = {
 	mode: ‘crop’ // ‘fit’ ‘cover’ ‘crop’ How to resize/crop the screenshot
 }
 ```
+
+##Resize / Crop Modes
 ![Resize / Crop Modes](https://github.com/jammind/cordova-screenshot/blob/master/resize-crop-modes.png)
 
 ##Sample: Take screenshot in JPEG (85) and crop to 200x200px and save to the presistent (document) folder.
@@ -72,7 +71,6 @@ var options = {
 navigator.screenshot.save(callback, options);
 ```
 
-License
-=========
+##License
 Brought to you by Jam Zhang and Anthony Zhu.
 This repo uses the MIT license
