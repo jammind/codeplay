@@ -4,7 +4,7 @@ cordova-screenshot
 [![NPM version](http://img.shields.io/npm/v/com.codeplay.cordova.screenshot.svg?style=flat)](https://www.npmjs.com/package/com.codeplay.cordova.screenshot)
 
 
-The Screenshot plugin allows your application to take screenshots of the current screen and save them into the phone.
+The Screenshot plugin allows your cordova application to take screenshots in JPG or PNG, resize or crop them and save them into any folders.
 
 ##how to install
 
@@ -15,90 +15,34 @@ cordova plugin add https://github.com/jammind/cordova-screenshot.git
 ```
 
 notice:
-in iOS, only jpg format is supported
-in Android, the default WebView and [Crosswalk](https://crosswalk-project.org/documentation/cordova.html) are both supported
-
+It supports only iOS now. I plan to support Android in the future.
+It is based on https://github.com/gitawego/cordova-screenshot. The original plugin supports iOS / OS X / Android.
 ##usage
 
 
 ```js
-navigator.screenshot.save(function(error,res){
-  if(error){
-    console.error(error);
-  }else{
-    console.log('ok',res.filePath);
-  }
-});
-```
+navigator.screenshot.save(callback, options);
+
+function callback(error,result){
+	if(error){
+		console.error(error);
+	}else{
+		console.log('ok',result.filePath);
+	}
+}
+
 take screenshot with jpg and custom quality
-```js
-navigator.screenshot.save(function(error,res){
-  if(error){
-    console.error(error);
-  }else{
-    console.log('ok',res.filePath);
-  }
-},'jpg',50);
+{
+	format: ‘jpg’, // Image format ‘jpg’(default) ‘png'
+	quality: 50, // JPEG quality [0-100] 50 by default
+	path: cordova.file.documentsDirectory, // 保存路径，缺省为temp文件夹
+	filename: ‘myscreenshot’, // 指定文件名，后缀根据格式自动追加，缺省则自动生成文件名
+	// The following 3 attributes require each other to work
+	width: 240, // Target area width in pixel
+	height: 240, // 目标高度
+	mode: ‘crop’ // ‘fit’ ‘cover’ ‘crop’缩放裁切模式，定义见下图
+}
 ```
-
-define a filename
-```js
-navigator.screenshot.save(function(error,res){
-  if(error){
-    console.error(error);
-  }else{
-    console.log('ok',res.filePath); //should be path/to/myScreenshot.jpg
-  }
-},'jpg',50,'myScreenShot');
-```
-
-screenshot files are stored in /sdcard/Pictures for android.
-
-take screenshot and get it as Data URI
-```js
-navigator.screenshot.URI(function(error,res){
-  if(error){
-    console.error(error);
-  }else{
-    html = '<img style="width:50%;" src="'+res.URI+'">';
-    document.body.innerHTML = html;
-  }
-},50);
-```
-
-##usage in AngularJS
-
-```js
-.service('$cordovaScreenshot', ['$q', function ($q){
-	return {
-		capture: function (filename, extension, quality){
-			extension = extension || 'jpg';
-			quality = quality || '100';
-
-			var defer = $q.defer();
-			
-			navigator.screenshot.save(function (error, res){
-				if (error) {
-					console.error(error);
-					defer.reject(error);
-				} else {
-					console.log('screenshot saved in: ', res.filePath);
-					defer.resolve(res.filePath);
-				}
-			}, extension, quality, filename);
-			
-			return defer.promise;
-		}
-	};
-}])
-```
-
-##Known Issue
-###in Android platform I receive the black image with crosswalk 
-####solution: 
-
-add this line ``<preference name="CrosswalkAnimatable" value="true" />`` in config.xml, see [bug](https://crosswalk-project.org/jira/browse/XWALK-2233)
-
 
 License
 =========
