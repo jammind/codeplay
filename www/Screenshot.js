@@ -19,6 +19,16 @@ module.exports = {
 		}
 
 		options.quality = typeof(options.quality) !== 'number'?100:options.quality;
+		
+		options.cropTop = parseInt(options.cropTop);
+		options.cropBottom = parseInt(options.cropBottom);
+		options.cropLeft = parseInt(options.cropLeft);
+		options.cropRight = parseInt(options.cropRight);
+		if (isNaN(options.cropTop)) options.cropTop = 0;
+		if (isNaN(options.cropBottom)) options.cropBottom = 0;
+		if (isNaN(options.cropLeft)) options.cropLeft = 0;
+		if (isNaN(options.cropRight)) options.cropRight = 0;
+		
 		exec(function(res){
 			callback && callback(null,res);
 		}, function(error){
