@@ -1,4 +1,3 @@
-cordova.define("com.codeplay.cordova.screenshot.screenshot", function(require, exports, module) {
 /*
  *  This code is adapted from the work of Michael Nachbaur
  *  by Simon Madine of The Angry Robot Zombie Factory
@@ -6,7 +5,7 @@ cordova.define("com.codeplay.cordova.screenshot.screenshot", function(require, e
  *   - Converted to Cordova 2.0.0 by Simon MacDonald
  *  2012-07-03
  *   - Enhanced with resize/crop mode and path/format support by Jam Zhang & Anthony Zhu
- *  2016-10-15
+ *  2016-12-01
  *  MIT licensed
  */
 var exec = require('cordova/exec'), formats = ['png','jpg'];
@@ -48,5 +47,3 @@ module.exports = {
 
 	}
 };
-
-});
