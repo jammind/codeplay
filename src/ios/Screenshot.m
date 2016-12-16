@@ -14,15 +14,56 @@
 @implementation Screenshot
 
 @synthesize webView;
-- (UIImage *)getScreenshot
-{
+- (UIImage *)getScreenshotWithTop:(NSNumber *)top Bottom:(NSNumber *)bottom Left:(NSNumber *)left Right:(NSNumber *)right {
 	UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
 	CGRect rect = [keyWindow bounds];
-	UIGraphicsBeginImageContextWithOptions(rect.size, YES, 0);
-	[keyWindow drawViewHierarchyInRect:keyWindow.bounds afterScreenUpdates:YES];
-	UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-	return img;
+    
+    UIView *view = [[UIView alloc] initWithFrame:rect];
+    UIGraphicsBeginImageContext(view.frame.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [keyWindow.layer renderInContext:context];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    if (top.integerValue == 0
+        &&
+        bottom.integerValue == 0
+        &&
+        left.integerValue == 0
+        &&
+        right.integerValue == 0) {
+        return image;
+    } else {
+        if (top.integerValue < 0) {
+            top = @(0);
+        }
+        if (bottom.integerValue < 0) {
+            bottom = @(0);
+        }
+        if (left.integerValue < 0) {
+            left = @(0);
+        }
+        if (right.integerValue < 0) {
+            right = @(0);
+        }
+        NSInteger areaY = rect.origin.y + top.integerValue;
+        NSInteger areaHeight = rect.size.height - top.integerValue - bottom.integerValue;
+        if (areaHeight < 0) {
+            areaHeight = rect.size.height;
+        }
+        NSInteger areaX = rect.origin.x + left.integerValue;
+        NSInteger areaWidth = rect.size.width - left.integerValue - right.integerValue;
+        if (areaWidth) {
+            areaWidth = rect.size.width;
+        }
+        
+        CGRect cropRect = CGRectMake(areaX, areaY, areaWidth, areaHeight);
+        CGImageRef imagRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
+        UIImage* cropImage = [UIImage imageWithCGImage: imagRef];
+        CGImageRelease(imagRef);
+        
+        return cropImage;
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -117,6 +158,11 @@
     NSNumber *height = [command.arguments objectAtIndex:5];
     NSString *mode = [command.arguments objectAtIndex:6];
     
+    NSNumber *cropTop = [command.arguments objectAtIndex:7];
+    NSNumber *cropBottom = [command.arguments objectAtIndex:8];
+    NSNumber *cropLeft = [command.arguments objectAtIndex:9];
+    NSNumber *cropRight = [command.arguments objectAtIndex:10];
+
     NSString *path = @"";
     if (filename.length == 0) {
         filename = @"myscreenshot";
@@ -141,7 +187,7 @@
         }
     }
 
-	UIImage *image = [self getScreenshot];
+	UIImage *image = [self getScreenshotWithTop:cropTop Bottom:cropBottom Left:cropLeft Right:cropRight];
     
     if (width.floatValue > 0
         &&
@@ -177,7 +223,7 @@
 - (void) getScreenshotAsURI:(CDVInvokedUrlCommand*)command
 {
 	NSNumber *quality = command.arguments[0];
-	UIImage *image = [self getScreenshot];
+	UIImage *image = [self getScreenshotWithTop:0 Bottom:0 Left:0 Right:0];
     NSData *imageData = [[NSData alloc] init];
     
     double imageQuality = [quality doubleValue]/100;

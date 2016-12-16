@@ -1,3 +1,4 @@
+cordova.define("com.codeplay.cordova.screenshot.screenshot", function(require, exports, module) {
 /*
  *  This code is adapted from the work of Michael Nachbaur
  *  by Simon Madine of The Angry Robot Zombie Factory
@@ -17,12 +18,24 @@ module.exports = {
 		if(formats.indexOf(options.format) === -1){
 			return callback && callback(new Error('invalid format '+options.format));
 		}
+
 		options.quality = typeof(options.quality) !== 'number'?100:options.quality;
 		exec(function(res){
 			callback && callback(null,res);
 		}, function(error){
 			callback && callback(error);
-		}, "Screenshot", "saveScreenshot", [options.format, options.quality, options.path,options.filename, options.width, options.height, options.mode]);
+		}, "Screenshot", "saveScreenshot", 
+		[options.format, 
+		options.quality, 
+		options.path,
+		options.filename, 
+		options.width, 
+		options.height, 
+		options.mode, 
+		options.cropTop, 
+		options.cropBottom, 
+		options.cropLeft, 
+		options.cropRight]);
 	},
 
 	URI:function(callback, quality){
@@ -35,3 +48,5 @@ module.exports = {
 
 	}
 };
+
+});
